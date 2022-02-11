@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale">
+	<title>Login & Register</title>
+	<script type="text/javascript">
+		let users = [{
+			username: "pepe",
+			password: "123",
+			email: "pepe@gmail.com"
+		}];
+
+		function loginUser() {
+			userElement = document.getElementById("LoginUsername");
+			passwordElement = document.getElementById("LoginPassword");
+			if(userElement.value in users) {
+				if (users[userElement.value] == passwordElement.value){
+					alert("Login successful");	
+				} else {
+					alert("Something went wrong");	
+				}
+			}
+		}
+
+		function registerUser() {
+			userElement = document.getElementById("RegisterUsername");
+			passwordElement = document.getElementById("RegisterPassword");
+			if(userElement.value in users || emailElement.value in users) {
+				alert("User already exists")
+			} else {
+				users.add({userElement.value : passwordElement.value});
+			}
+		}
+	</script>
+</head>
+<body>
+	<form style="background-color: lightgray">
+		<br>
+		<label>Username:</label>
+		<br>
+		<input type="text" name="Username" id="LoginUsername">
+		<br>
+		<label>Password:</label>
+		<br>
+		<input type="Password" name="Password" id="LoginPassword">
+		<br>
+		<input type="Button" name="Login" value="Submit" onclick="loginUser()">
+		<br>
+		<br>
+	</form>
+	<form style="background-color: blueviolet">
+		<br>
+		<label>Username:</label>
+		<br>
+		<input type="text" name="Username">
+		<br>
+		<label>Password:</label>
+		<br>
+		<input type="Password" name="Password">
+		<br>
+		<label>E-Mail:</label>
+		<br>
+		<input type="text" name="E-mail">
+		<br>
+		<input type="Button" name="Register" value="Submit" onclick="registerUser()">
+		<br>
+		<br>
+	</form>
+</body>
+</html>
