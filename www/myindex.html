@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale">
+	<title>Login & Register</title>
+	<script type="text/javascript">
+		let users = {pepe: {password: "123", email: "pepe@gmail.com"}, lola: {password: "abc", email: "lola@gmail.com"}};
+		
+		function loginUser(){
+            console.log("Dins de la funcio");
+            let userElement = document.getElementById("LoginUsername").value;
+            let passwordElement = document.getElementById("LoginPassword").value;
+
+            if (users[userElement]["password"] == passwordElement ) {
+                alert("Hola "+ userElement )
+            }
+            else{
+                alert("You have entered the wrong password or the user does not exist.")
+            }
+        }
+
+		function registerUser() {
+			let userElement = document.getElementById("RegisterUsername");
+			let passwordElement = document.getElementById("RegisterPassword");
+			let emailElement = document.getElementById("RegisterE-mail");
+			
+			if (userElement !== "" && Object.keys(users).includes(userElement) == false) {
+				alert("User already exists");
+			} else {
+				if (passwordElement == "" || emailElement == ""){
+					alert("One or some of the fields are empty");
+				} else {
+					users[userElement] = {password: passwordElement, email: emailElement}
+					alert("User added");	
+				}
+				
+			}
+		}
+
+		 function registre(){
+            let userRe = document.getElementById("usernameRegister").value;
+            let emailRe = document.getElementById("email").value; 
+            let pass_reg = document.getElementById("pass_reg").value;
+            let pass_reg2 = document.getElementById("pass_reg2").value;
+
+
+            if (userRe !== "" && Object.keys(users).includes(userRe) == false) { // no va que no se pueda repetir usuario
+                if (emailRe !== "") {
+                    if (pass_reg == pass_reg2 && pass_reg != "" && pass_reg2 != "") {
+                        users[userRe] = {password: pass_reg, email: emailRe}
+                        alert("registro realizado")
+                    }
+                    else{
+                        alert("las contraseñas no son iguales")
+                    } 
+                }
+                else{
+                    alert("email vacio")
+                }
+            }
+            else{
+                alert("username vacio o repetido")
+            }
+        }
+	</script>
+</head>
+<body>
+	<form style="background-color: lightgray">
+		<br>
+		<label>Username:</label>
+		<br>
+		<input type="text" id="LoginUsername">
+		<br>
+		<label>Password:</label>
+		<br>
+		<input type="Password" id="LoginPassword">
+		<br>
+		<input type="Button" value="Submit" onclick="loginUser()">
+		<br>
+		<br>
+	</form>
+	<form style="background-color: blueviolet">
+		<br>
+		<label>Username:</label>
+		<br>
+		<input type="text" id="RegisterUsername">
+		<br>
+		<label>Password:</label>
+		<br>
+		<input type="Password" id="RegisterPassword">
+		<br>
+		<label>E-Mail:</label>
+		<br>
+		<input type="text" id="RegisterE-mail">
+		<br>
+		<input type="Button" value="Submit" onclick="registerUser()">
+		<br>
+		<br>
+	</form>
+</body>
+</html>

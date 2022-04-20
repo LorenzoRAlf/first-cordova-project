@@ -10,17 +10,15 @@
         let users = {pepe : {username : "pepe", email : "pepe@gmail.com", password : "pepe123"}, lola : {username : "lola", email : "lola@gmail.com", password : "lola123"}};
 
         function fer_login(){
+            console.log("Dins de la funcio");
             let userLo = document.getElementById("usernameLogin").value;
             let passLo = document.getElementById("password").value;
 
-            if (users[userLo] != undefined) {
-                if (users[userLo].password == passLo) {
-                    alert("Hello "+ userLo )
-                } else {
-                    alert("Incorrect password")
-                }
-            } else {
-                alert("The user does not exist")
+            if (users[userLo]["password"]== passLo ) {
+                alert("Hola "+ userLo )
+            }
+            else{
+                alert("Usuario o ocntraseña incorrectos")
             }
         }
 
@@ -30,28 +28,28 @@
             let pass_reg = document.getElementById("pass_reg").value;
             let pass_reg2 = document.getElementById("pass_reg2").value;
 
-            try {
 
-                if (users[userRe] != undefined) {
-                    alert("This username is already in use");
-                } else {
-                    if (userRe.length > 0 && emailRe.length > 0 && pass_reg > 0 && pass_reg2 > 0) {
-                        if (pass_reg != pass_reg2) {
-                            alert("The passwords do not match");
-                        } else {
-                            users[userRe] = {username : userRe, email : emailRe, password : pass_reg};
-                            alert("Registration successful, " + userRe);
-                        }
-                    } else {
-                        alert("Incomplete fields in registration");
-                    }
+            if (userRe !== "" && Object.keys(users).includes(userRe) == false) { // no va que no se pueda repetir usuario
+                if (emailRe !== "") {
+                    if (pass_reg == pass_reg2 && pass_reg != "" && pass_reg2 != "") {
+
+                        users[userRe] = {password: pass_reg, email: emailRe}
+
+                        alert("registro realizado")
                     
-                }
-            } catch (error) {
-                console.log(error);
-                alert("Error: " + error);
+                    }
+                    else{
+                        alert("las contraseñas no son iguales")
+                    }
                 
-            } 
+                }
+                else{
+                    alert("email vacio")
+                }
+            }
+            else{
+                alert("username vacio o repetido")
+            }
 
         }
 
@@ -69,7 +67,7 @@
             <br>
             <label >Password</label> 
             <br>
-            <input id="password" type="password" name=" ">
+            <input id="password" type="password" name="password">
             <br>
 
             <input type="button" value="submit" onclick="fer_login()">
